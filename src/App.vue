@@ -10,7 +10,7 @@
 </template>
 
 <script>
-import ChildComponent from './components/Child.vue';
+import ChildComponent from './components/ChildComponent.vue';
 
 export default {
   name: 'App', 

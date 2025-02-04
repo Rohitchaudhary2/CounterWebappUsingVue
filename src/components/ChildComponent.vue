@@ -16,11 +16,6 @@ export default {
     }
   },
   props: ['count', 'increment', 'decrement'],
-  computed: {
-    cnt() {
-      return this.counter
-    }
-  },
   methods: {
     incrementCounter() {
         this.counter++
