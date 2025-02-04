@@ -1,26 +1,50 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png">
-  <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <h1>This is simple counter application.</h1>
+  <h2>Counter from App component: {{ count }}</h2>
+  <button @click="incrementCount()">Increment using App component</button>
+  <button @click="decrementCount()">Decrement using App component</button>
+  <ChildComponent ref="child" @counterchanged="counterChanged" :count=count :increment="incrementCount" :decrement="decrementCount"> </ChildComponent>
+  <h2>Counter of child component in App component: {{ counter }}</h2>
+  <button @click="incrementCounter()">Increment Child component counter using App component</button>
+  <button @click="decrementCounter()">Decrement Child component counter using App component</button>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import ChildComponent from './components/Child.vue';
 
 export default {
-  name: 'App',
+  name: 'App', 
   components: {
-    HelloWorld
+    ChildComponent
+  },
+  data() {
+    return {
+      count: 0,
+      counter: 0
+    }
+  },
+  methods: {
+    incrementCount() {
+      this.count++
+    },
+    decrementCount() {
+      this.count--
+    },
+    counterChanged(value) {
+      this.counter = value
+    },
+    incrementCounter() {
+      this.$refs.child.incrementCounter()
+    },
+    decrementCounter() {
+      this.$refs.child.decrementCounter()
+    }
   }
 }
 </script>
 
 <style>
 #app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+  background: wheat;
 }
 </style>
